@@ -7,7 +7,6 @@ import com.piotrapps.data.remote.PhotosApi
 import com.piotrapps.domain.model.Photo
 import com.piotrapps.domain.repository.PhotosRepository
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flatMapConcat
@@ -28,7 +27,6 @@ class PhotosRepositoryImpl(private val photosApi: PhotosApi, private val photosD
     }
 
     override suspend fun downloadData(): Flow<Unit> {
-        delay(10000)
         return flow { emit(photosApi.downloadPhotos()) }
             .catch {
                 //Ignore
